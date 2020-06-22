@@ -1,0 +1,26 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/template.xhtml"
+    >
+    <ui:define name="title">Menu de Administrador</ui:define>
+
+    <ui:define name="body">
+        <h:form class="menu">
+            <h:link
+                outcome="sale?faces-redirect=true"
+                class="menu-button green-button"
+                >Criar venda</h:link
+            >
+
+            <h:commandLink
+                action="#{userBean.doLogout}"
+                value="Sair"
+                class="menu-button red-button"
+                />
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,94 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/adminTemplate.xhtml">
+    <f:metadata>
+        <f:viewParam name="id" value="#{userManageBean.id}" />
+        <f:event type="preRenderView" listener="#{userManageBean.retrieve}" />
+    </f:metadata>
+
+    <ui:define name="title">
+        <c:choose>
+            <c:when test='#{!empty userManageBean.id}'>
+                Editar usuário
+            </c:when>
+            <c:otherwise>
+                Criar usuário
+            </c:otherwise>
+        </c:choose>
+    </ui:define>
+
+    <ui:define name="body">
+        <h:form id="createclient" class="product-form">
+            <div class="input">
+                <h:outputLabel for="userManageBeanUserName" value="Nome:" />
+                <h:inputText
+                    id="userManageBeanUserName"
+                    maxlength="100"
+                    required="true"
+                    value="#{userManageBean.user.name}"
+                    />
+                <h:message for="userManageBeanUserName" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="productBeanProductCpf" value="CPF:" />
+                <h:inputText
+                    id="productBeanProductCpf"
+                    maxlength="11"
+                    required="true"
+                    value="#{userManageBean.user.login}"
+                    />
+                <h:message for="productBeanProductCpf" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel
+                    for="userManageBeanPassword1"
+                    value="Senha:"
+                    />
+                <h:inputText
+                    id="userManageBeanPassword1"
+                    maxlength="100"
+                    pt:type="password"
+                    required="true"
+                    value="#{userManageBean.password1}"
+                    />
+                <h:message for="userManageBeanPassword1" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel
+                    for="userManageBeanPassword2"
+                    value="Confirme a senha:"
+                    />
+                <h:inputText
+                    id="userManageBeanPassword2"
+                    maxlength="100"
+                    pt:type="password"
+                    required="true"
+                    value="#{userManageBean.password2}"
+                    />
+                <h:message for="userManageBeanPassword2" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <h:selectBooleanCheckbox value="#{userManageBean.user.admin}"/>Admin
+                </label>
+            </div>
+
+            <div class="buttons">
+                <h:commandLink class="send-button green-button" value="Salvar" action="#{productBean.update}" />
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

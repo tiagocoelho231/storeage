@@ -1,0 +1,197 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto";
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+}
+
+button,
+input {
+    border: none;
+}
+
+.container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+td {
+    position: relative;
+}
+
+.input {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.input input{
+    margin-left: 20px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form .input input {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 6px 26px rgba(0, 0, 0, 0.1);
+    height: 40px;
+}
+
+form table {
+    margin-top: 30px;
+    text-align: center;
+    width: 100%;
+}
+
+.table-button {
+    align-items: center;
+    border-radius: 30px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 16px;
+    height: 30px;
+    justify-content: center;
+    padding: 0 15px;
+    text-decoration: none;
+}
+
+span.error {
+    color: #ff0000;
+    font-size: 12px;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    white-space: nowrap;
+}
+
+.error-message {
+    background-color: rgba(255, 0, 0, 0.3);
+    border: 2px solid #ff0000;
+    border-radius: 10px;
+    bottom: 100px;
+    color: #fff;
+    left: 50%;
+    list-style: none;
+    padding: 10px;
+    position: fixed;
+    text-transform: uppercase;
+    transform: translateX(-50%);
+}
+
+.menu {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu a:not(:last-of-type) {
+    margin-bottom: 50px;
+}
+
+.menu-button {
+    align-items: center;
+    border-radius: 60px;
+    color: #fff;
+    display: flex;
+    font-size: 30px;
+    height: 60px;
+    justify-content: center;
+    padding: 0 20px;
+    text-decoration: none;
+}
+
+.blue-button {
+    background-color: #4040C0;
+}
+
+.green-button {
+    background-color: #40C040;
+}
+
+.red-button {
+    background-color: #C04040;
+}
+
+.yellow-button {
+    background-color: #C0C040;
+}
+
+.action-bar {
+    display: flex;
+}
+
+.table-form {
+    align-items: center;
+    display: flex;
+    margin-right: 80px;
+}
+
+.table-form > div:not(:last-of-type) {
+    margin-right: 50px;
+}
+
+.table-form .input {
+    margin: 0;
+}
+
+.table-form .input input {
+    margin-left: 20px;
+}
+
+.action-button {
+    align-items: center;
+    border-radius: 40px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    height: 40px;
+    justify-content: center;
+    padding: 0 20px;
+    text-decoration: none;
+}
+
+.action-buttons input:not(:last-of-type),
+.action-buttons a:not(:last-of-type) {
+    margin-right: 50px;
+}
+
+.action-buttons {
+    display: flex;
+}
+
+.new-sale .action-buttons {
+    margin-left: auto;
+}
+
+.send-button {
+    align-items: center;
+    border-radius: 40px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    font-size: 20px;
+    height: 40px;
+    justify-content: center;
+    padding: 0 20px;
+    text-decoration: none;
+}

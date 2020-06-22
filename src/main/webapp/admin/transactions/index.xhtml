@@ -1,0 +1,70 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/adminTemplate.xhtml"
+    >
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{productBean.retrieve}" />
+    </f:metadata>
+
+    <ui:define name="title">Produtos</ui:define>
+
+    <ui:define name="body">
+        <h:form id="products">
+            <div class="action-buttons">
+                <h:link outcome="create?faces-redirect=true" class="action-button green-button">Adicionar produto</h:link>
+            </div>
+
+            <h:dataTable
+                columnClasses="name,code,price,quantity,edit,remove"
+                value="#{productBean.getAll()}"
+                var="product"
+                >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{product.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Código" />
+                    </f:facet>
+                    <h:outputText value="#{product.barCode}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preço" />
+                    </f:facet>
+                    <h:outputText value="#{product.price}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Quantidade em estoque" />
+                    </f:facet>
+                    <h:outputText value="#{product.quantity}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Editar" />
+                    </f:facet>
+                    <h:link class="table-button yellow-button" outcome="create">Editar</h:link>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Remover" />
+                    </f:facet>
+                    <h:commandLink class="table-button red-button" action="#{productBean.remove(product)}" value="Remover"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

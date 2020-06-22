@@ -1,0 +1,117 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/template.xhtml">
+
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{customerBean.retrieve}" />
+    </f:metadata>
+
+    <ui:define name="title">Criar cliente</ui:define>
+
+    <ui:define name="body">
+        <h:form id="createclient" class="customer-form">
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerName" value="Nome:" />
+                <h:inputText
+                    id="customerBeanName"
+                    maxlength="100"
+                    required="true"
+                    value="#{customerBean.customer.name}"
+                    />
+                <h:message for="customerBeanCustomerName" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerCpf" value="CPF:" />
+                <h:inputText
+                    id="customerBeanCustomerCpf"
+                    maxlength="11"
+                    required="true"
+                    value="#{customerBean.customer.cpf}"
+                    />
+                <h:message for="customerBeanCustomerCpf" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerAddressStreet" value="Logradouro:" />
+                <h:inputText
+                    id="customerBeanCustomerAddressStreet"
+                    maxlength="100"
+                    required="true"
+                    value="#{customerBean.customer.address.street}"
+                    />
+                <h:message for="customerBeanCustomerAddressStreet" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerAddressNumber" value="Número:" />
+                <h:inputText
+                    id="customerBeanCustomerAddressNumber"
+                    required="true"
+                    value="#{customerBean.customer.address.number}"
+                    />
+                <h:message for="customerBeanCustomerAddressNumber" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerAddressNeighborhood" value="Bairro:" />
+                <h:inputText
+                    id="customerBeanCustomerAddressNeighborhood"
+                    maxlength="100"
+                    required="true"
+                    value="#{customerBean.customer.address.neighborhood}"
+                    />
+                <h:message for="customerBeanCustomerAddressNeighborhood" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerAddressCity" value="Cidade:" />
+                <h:inputText
+                    id="customerBeanCustomerAddressCity"
+                    maxlength="100"
+                    required="true"
+                    value="#{customerBean.customer.address.city}"
+                    />
+                <h:message for="customerBeanCustomerAddressCity" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerAddressState" value="Estado:" />
+                <h:inputText
+                    id="customerBeanCustomerAddressState"
+                    maxlength="100"
+                    required="true"
+                    value="#{customerBean.customer.address.state}"
+                    />
+                <h:message for="customerBeanCustomerAddressState" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="input">
+                <h:outputLabel for="customerBeanCustomerPhone" value="Telefone:" />
+                <h:inputText
+                    id="customerBeanCustomerPhone"
+                    maxlength="20"
+                    required="true"
+                    value="#{customerBean.customer.phone}"
+                    />
+                <h:message for="customerBeanCustomerPhone" styleClass="error" />
+                <h:outputText value="" />
+            </div>
+
+            <div class="buttons">
+                <h:commandLink class="send-button green-button" value="Salvar" action="#{customerBean.update}" />
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>

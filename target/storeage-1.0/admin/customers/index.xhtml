@@ -1,0 +1,64 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/adminTemplate.xhtml"
+    >
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{customerBean.retrieve}" />
+    </f:metadata>
+
+    <ui:define name="title">Clientes</ui:define>
+
+    <ui:define name="body">
+        <h:form id="salecustomers" class="sale-customer">
+            <div class="action-buttons">
+                <h:link outcome="create?faces-redirect=true" class="action-button blue-button">Criar cliente</h:link>
+            </div>
+
+            <h:dataTable
+                columnClasses="name,cpf,edit,remove"
+                value="#{customerBean.getAll()}"
+                var="customer"
+                >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{customer.name}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="CPF" />
+                    </f:facet>
+                    <h:outputText value="#{customer.cpf}" />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Editar" />
+                    </f:facet>
+                    <h:link
+                        class="table-button yellow-button"
+                        value="Editar"
+                        outcome="create?id=#{customer.id}"
+                        />
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Remover" />
+                    </f:facet>
+                    <h:commandLink
+                        class="table-button red-button"
+                        value="Remover"
+                        action="#{customerBean.remove(customer)}"
+                        />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

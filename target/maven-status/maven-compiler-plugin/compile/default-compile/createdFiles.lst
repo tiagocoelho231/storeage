@@ -1,0 +1,5 @@
+com\tiagocoelho\storeage\JAXRSConfiguration.class
+com\tiagocoelho\storeage\model\Customer.class
+com\tiagocoelho\storeage\model\Product.class
+com\tiagocoelho\storeage\resources\JavaEE8Resource.class
+com\tiagocoelho\storeage\model\Address.class
