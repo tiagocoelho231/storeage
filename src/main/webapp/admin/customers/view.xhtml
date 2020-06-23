@@ -1,0 +1,65 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+    xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    template="/resources/adminTemplate.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{customerBean.id}" />
+        <f:event type="preRenderView" listener="#{customerBean.retrieve}" />
+    </f:metadata>
+
+    <ui:define name="title">Cliente: #{customerBean.customer.name}</ui:define>
+
+    <ui:define name="body">
+        <h:form id="viewclient" class="customer-view">
+            <h:link class="action-button back-button" outcome="index">Voltar</h:link>
+            <div class="client-details">
+                <p><h:outputText value="CPF: #{customerBean.customer.name}" /></p>
+                <p><h:outputText value="Logradouro: #{customerBean.customer.address.street}" /></p>
+                <p><h:outputText value="Número: #{customerBean.customer.address.number}" /></p>
+                <p><h:outputText value="Bairro: #{customerBean.customer.address.neighborhood}" /></p>
+                <p><h:outputText value="Cidade: #{customerBean.customer.address.city}" /></p>
+                <p><h:outputText value="Estado: #{customerBean.customer.address.state}" /></p>
+                <p><h:outputText value="Telefone: #{customerBean.customer.phone}" /></p>
+            </div>
+            <h:dataTable
+                columnClasses="name,cpf,edit,remove"
+                value="#{customerBean.getRelatedSales()}"
+                var="sale"
+                >
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Itens" />
+                    </f:facet>
+                    <h:outputText value="#{sale.saleItems[0].product.name}"/>
+                    <h:outputText rendered="#{sale.saleItems.size() > 1}" value="..."/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Código" />
+                    </f:facet>
+                    <h:outputText value="#{sale.id}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Preço total" />
+                    </f:facet>
+                    <h:outputText value="#{sale.getTotal()}"/>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Data" />
+                    </f:facet>
+                    <h:outputText value="#{sale.createdAt}" />
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </ui:define>
+</ui:composition>

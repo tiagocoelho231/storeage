@@ -1,6 +1,7 @@
 package com.tiagocoelho.storeage.view;
 
 import com.tiagocoelho.storeage.model.Customer;
+import com.tiagocoelho.storeage.model.Sale;
 
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -19,6 +20,7 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
 @Named
 @Stateful
@@ -35,8 +37,6 @@ public class CustomerBean implements Serializable {
     @Inject
     private Conversation conversation;
 
-    @Inject
-    private UserBean userBean;
     @PersistenceContext(unitName = "storeage", type = PersistenceContextType.EXTENDED)
     private EntityManager entityManager;
     private long count;
@@ -90,16 +90,13 @@ public class CustomerBean implements Serializable {
     }
 
     public String update() {
-        this.conversation.end();
-
         try {
             if (this.id != null) {
-                this.entityManager.persist(this.customer.getAddress());
                 this.entityManager.persist(this.customer);
             } else {
-                this.entityManager.merge(this.customer.getAddress());
                 this.entityManager.merge(this.customer);
             }
+            this.conversation.end();
             return "index?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
@@ -130,6 +127,13 @@ public class CustomerBean implements Serializable {
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
         }
+    }
+
+    public List<Sale> getRelatedSales() {
+        TypedQuery<Sale> query = entityManager.createNamedQuery(Customer.GET_RELATED_SALES_BY_ID, Sale.class);
+        query.setParameter("customerId", id);
+        List<Sale> sales = query.getResultList();
+        return sales;
     }
 
     public List<Customer> getPageItems() {

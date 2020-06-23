@@ -1,6 +1,6 @@
 -- USUÁRIOS
-INSERT INTO T_USER (id, login, password, name, created_at, is_admin) VALUES (1000, '11111111111', '123456', 'Tiago', '1935-07-01', FALSE);
-INSERT INTO T_USER (id, login, password, name, created_at, is_admin) VALUES (1001, '99999999999', '999999', 'Admin', '1923-04-12', TRUE);
+INSERT INTO T_USER (id, login, password, name, is_admin) VALUES (1000, '11111111111', '123456', 'Tiago', FALSE);
+INSERT INTO T_USER (id, login, password, name, is_admin) VALUES (1001, '99999999999', '999999', 'Admin', TRUE);
 
 -- PRODUTOS
 INSERT INTO PRODUCT (id, name, barcode, price, quantity) VALUES (1000, 'Bolacha Danix', '7896058257274', 2.00, 22);

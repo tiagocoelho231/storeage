@@ -51,9 +51,7 @@ public class UserBean implements Serializable {
         try {
             user = query.getSingleResult();
 
-            if (user.isAdmin()) {
-                admin = true;
-            }
+            admin = user.isAdmin();
 
             loggedIn = true;
 

@@ -24,6 +24,7 @@
 
     <ui:define name="body">
         <h:form id="createclient" class="product-form">
+            <h:link class="action-button back-button" outcome="index">Voltar</h:link>
             <div class="input">
                 <h:outputLabel for="userManageBeanUserName" value="Nome:" />
                 <h:inputText
@@ -87,7 +88,7 @@
             </div>
 
             <div class="buttons">
-                <h:commandLink class="send-button green-button" value="Salvar" action="#{productBean.update}" />
+                <h:commandLink class="send-button green-button" value="Salvar" action="#{userManageBean.update}" />
             </div>
         </h:form>
     </ui:define>

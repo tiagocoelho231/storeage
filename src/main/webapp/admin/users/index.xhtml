@@ -14,12 +14,13 @@
 
     <ui:define name="body">
         <h:form id="products">
+            <h:link class="action-button back-button" outcome="/admin/menu">Voltar</h:link>
             <div class="action-buttons">
                 <h:link outcome="create?faces-redirect=true" class="action-button green-button">Adicionar usuário</h:link>
             </div>
 
             <h:dataTable
-                columnClasses="name,cpf,createdAt,type,edit,remove"
+                columnClasses="name,cpf,type,edit,remove"
                 value="#{userManageBean.getAll()}"
                 var="user"
                 >
@@ -35,13 +36,6 @@
                         <h:outputText value="CPF" />
                     </f:facet>
                     <h:outputText value="#{user.login}" />
-                </h:column>
-
-                <h:column>
-                    <f:facet name="header">
-                        <h:outputText value="Criado em" />
-                    </f:facet>
-                    <h:outputText value="#{user.createdAt}" />
                 </h:column>
 
                 <h:column>

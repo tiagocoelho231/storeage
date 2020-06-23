@@ -20,7 +20,7 @@ public class SaleItem {
     @XmlTransient
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Product product;
 
     @Min(0)

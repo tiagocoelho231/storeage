@@ -23,7 +23,13 @@ input {
     width: 100%;
 }
 
-td {
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #000;
+    padding: 5px 10px;
     position: relative;
 }
 
@@ -194,4 +200,21 @@ span.error {
     justify-content: center;
     padding: 0 20px;
     text-decoration: none;
+}
+
+.client-details {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+}
+
+.client-details p {
+    margin-right: 50px;
+}
+
+.back-button {
+    background-color: #000;
+    left: 50px;
+    position: fixed;
+    top: 50px;
 }

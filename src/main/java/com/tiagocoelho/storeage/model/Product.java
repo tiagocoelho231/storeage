@@ -34,7 +34,6 @@ public class Product {
     @Min(0)
     private Float price;
 
-    @Min(0)
     private Integer quantity;
 
     // ======================================

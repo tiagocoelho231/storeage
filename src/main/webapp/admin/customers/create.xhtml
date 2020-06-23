@@ -13,20 +13,19 @@
     </f:metadata>
 
     <ui:define name="title">
-        <ui:define name="title">
-            <c:choose>
-                <c:when test="#{!empty customerBean.id}">
-                    Editar cliente
-                </c:when>
-                <c:otherwise>
-                    Criar cliente
-                </c:otherwise>
-            </c:choose>
-        </ui:define>
+        <c:choose>
+            <c:when test="#{!empty customerBean.id}">
+                Editar cliente
+            </c:when>
+            <c:otherwise>
+                Criar cliente
+            </c:otherwise>
+        </c:choose>
     </ui:define>
 
     <ui:define name="body">
         <h:form id="createclient" class="customer-form">
+            <h:link class="action-button back-button" outcome="index">Voltar</h:link>
             <div class="input">
                 <h:outputLabel for="customerBeanCustomerName" value="Nome:" />
                 <h:inputText

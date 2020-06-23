@@ -6,16 +6,19 @@
     xmlns:ui="http://java.sun.com/jsf/facelets"
     template="/resources/template.xhtml"
     >
-    <ui:define name="title">Nova venda</ui:define>
+    <ui:define name="title">
+        Nova venda
+        <h:outputText rendered="#{!empty saleBean.sale.customer}" value=" para #{saleBean.sale.customer.name}"/>
+    </ui:define>
 
     <ui:define name="body">
         <h:form id="newsale" class="new-sale">
             <div class="action-bar">
                 <div class="table-form">
                     <div class="input">
-                        <h:outputLabel for="saleBeanDaleItemBarCode" value="Código:" />
+                        <h:outputLabel for="saleBeanSaleItemBarCode" value="Código:" />
                         <h:inputText
-                            id="saleBeanDaleItemBarCode"
+                            id="saleBeanSaleItemBarCode"
                             value="#{saleBean.saleItemBarCode}"
                             />
                     </div>

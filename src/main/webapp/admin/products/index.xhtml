@@ -14,8 +14,43 @@
 
     <ui:define name="body">
         <h:form id="products">
-            <div class="action-buttons">
-                <h:link outcome="create?faces-redirect=true" class="action-button green-button">Adicionar produto</h:link>
+            <h:link class="action-button back-button" outcome="/admin/menu">Voltar</h:link>
+            <div class="action-bar">
+                <div class="table-form">
+                    <div class="input">
+                        <h:outputLabel for="productBeanBarCode" value="Código:" />
+                        <h:inputText
+                            id="productBeanBarCode"
+                            value="#{productBean.barCode}"
+                            />
+                    </div>
+                    <div class="input">
+                        <h:outputLabel for="productBeanQuantity" value="Quantidade:" />
+                        <h:inputText
+                            id="customerBeanQuantity"
+                            value="#{productBean.quantity}"
+                            />
+                    </div>
+
+                    <div class="form-button">
+                        <h:commandLink
+                            class="action-button green-button"
+                            value="Entrada"
+                            action="#{productBean.increase}"
+                            />
+                    </div>
+
+                    <div class="form-button">
+                        <h:commandLink
+                            class="action-button red-button"
+                            value="Saída"
+                            action="#{productBean.decrease}"
+                            />
+                    </div>
+                </div>
+                <div class="action-buttons">
+                    <h:link outcome="create?faces-redirect=true" class="action-button blue-button">Adicionar produto</h:link>
+                </div>
             </div>
 
             <h:dataTable

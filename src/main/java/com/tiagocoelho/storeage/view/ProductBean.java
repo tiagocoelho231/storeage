@@ -19,6 +19,7 @@ import javax.persistence.PersistenceContextType;
 import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.TypedQuery;
 
 @Named
 @Stateful
@@ -32,6 +33,10 @@ public class ProductBean implements Serializable {
      */
     private Long id;
     private Product product;
+
+    private String barCode;
+    private Integer quantity;
+
     @Inject
     private Conversation conversation;
     @PersistenceContext(unitName = "storeage", type = PersistenceContextType.EXTENDED)
@@ -57,6 +62,43 @@ public class ProductBean implements Serializable {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getBarCode() {
+        return this.barCode;
+    }
+
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
+    }
+
+    public Integer getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public void increase() {
+        TypedQuery<Product> query = entityManager.createNamedQuery(Product.FIND_BY_BARCODE, Product.class);
+        query.setParameter("barCode", barCode);
+        Product product = query.getSingleResult();
+        product.setQuantity(product.getQuantity() + quantity);
+        resetForm();
+    }
+
+    public void decrease() {
+        TypedQuery<Product> query = entityManager.createNamedQuery(Product.FIND_BY_BARCODE, Product.class);
+        query.setParameter("barCode", barCode);
+        Product product = query.getSingleResult();
+        product.setQuantity(product.getQuantity() - quantity);
+        resetForm();
+    }
+
+    public void resetForm() {
+        this.barCode = null;
+        this.quantity = null;
     }
 
     public String create() {

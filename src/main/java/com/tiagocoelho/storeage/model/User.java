@@ -56,11 +56,6 @@ public class User {
     @Column(name = "IS_ADMIN")
     private Boolean admin;
 
-    @Column(name = "created_at")
-    @Temporal(TemporalType.DATE)
-    @Past
-    private Date createdAt;
-
     // ======================================
     // = Getters and Setters =
     // ======================================
@@ -114,13 +109,5 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         this.admin = admin;
-    }
-
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
     }
 }

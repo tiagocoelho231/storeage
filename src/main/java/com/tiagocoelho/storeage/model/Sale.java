@@ -25,7 +25,7 @@ public class Sale {
     @XmlTransient
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Customer customer;
 
     @NotNull
@@ -33,7 +33,7 @@ public class Sale {
     private Date createdAt;
 
     @NotEmpty
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<SaleItem> saleItems = new ArrayList<>();
 
     // ======================================
@@ -74,5 +74,18 @@ public class Sale {
 
     public List<SaleItem> getSaleItems() {
         return saleItems;
+    }
+
+    public Float getTotal() {
+        if (getSaleItems() == null || getSaleItems().isEmpty()) {
+            return 0f;
+        }
+
+        Float total = 0f;
+
+        for (SaleItem item : getSaleItems()) {
+            total += (item.getSubTotal());
+        }
+        return total;
     }
 }

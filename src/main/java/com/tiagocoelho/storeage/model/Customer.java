@@ -11,7 +11,10 @@ import javax.xml.bind.annotation.*;
 @DiscriminatorValue("C")
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.FIELD)
+@NamedQuery(name = Customer.GET_RELATED_SALES_BY_ID, query = "SELECT s FROM Sale s WHERE s.customer.id = :customerId")
 public class Customer {
+
+    public static final String GET_RELATED_SALES_BY_ID = "Customer.getRelatedSalesById";
 
     // ======================================
     // = Attributes =
@@ -31,7 +34,7 @@ public class Customer {
     private String cpf;
 
     @NotNull
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Address address = new Address();
 
     @NotNull

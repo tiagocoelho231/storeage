@@ -97,19 +97,6 @@ public class SaleBean implements Serializable {
         }
     }
 
-    public Float getTotal() {
-        if (sale.getSaleItems() == null || sale.getSaleItems().isEmpty()) {
-            return 0f;
-        }
-
-        Float total = 0f;
-
-        for (SaleItem item : sale.getSaleItems()) {
-            total += (item.getSubTotal());
-        }
-        return total;
-    }
-
     public String cancel() {
         AlterableContext ctx = (AlterableContext) beanManager.getContext(SessionScoped.class);
         Bean<?> myBean = beanManager.getBeans(SaleBean.class).iterator().next();
@@ -123,11 +110,6 @@ public class SaleBean implements Serializable {
             return null;
         }
         sale.setCreatedAt(new Date());
-        sale.getSaleItems().forEach((SaleItem saleItem) -> {
-            Integer productQuantity = saleItem.getProduct().getQuantity();
-            saleItem.getProduct().setQuantity(productQuantity - saleItemQuantity);
-            em.persist(saleItem);
-        });
         em.persist(sale);
 
         AlterableContext ctx = (AlterableContext) beanManager.getContext(SessionScoped.class);

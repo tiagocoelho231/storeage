@@ -113,17 +113,17 @@ public class UserManageBean implements Serializable {
     @Transactional
     public String update() {
         try {
-            if (entityManager.createNamedQuery(User.FIND_BY_LOGIN, User.class).setParameter("login", user.getLogin())
-                    .getResultList().size() > 0) {
+            List<User> list = entityManager.createNamedQuery(User.FIND_BY_LOGIN, User.class).setParameter("login", user.getLogin()).getResultList();
+            if (list.size() > 0 && !list.get(0).getId().equals(user.getId())) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "CPF " + user.getLogin() + " já cadastrado", null));
                 return null;
             }
 
             if (password1 != null && !password1.isEmpty() && password1.equals(password2)) {
                 user.setPassword(password1);
+            } else {
+                return null;
             }
-
-            user.setCreatedAt(new Date());
 
             if (this.id != null) {
                 this.entityManager.persist(this.user);
@@ -140,11 +140,12 @@ public class UserManageBean implements Serializable {
     }
 
     public String delete() {
+        this.conversation.end();
+
         try {
             User deletableEntity = findById(getId());
             this.entityManager.remove(deletableEntity);
             this.entityManager.flush();
-            this.conversation.end();
             return "index?faces-redirect=true";
         } catch (Exception e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
